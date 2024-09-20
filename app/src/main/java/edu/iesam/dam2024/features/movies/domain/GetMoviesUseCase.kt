@@ -1,4 +1,4 @@
-package edu.iesam.dam2024.features.domain
+package edu.iesam.dam2024.features.movies.domain
 
 class GetMoviesUseCase(private val movieRepository: MovieRepository) {
 
