@@ -14,7 +14,6 @@ class SuperheroActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val viewModel = factory.buildViewModel()
         val heroes = viewModel.viewCreated()
-        //Log.d("@dev",heroes.toString())
-        Log.d("@dev","Hola")
+        Log.d("@dev",heroes.toString())
     }
 }
