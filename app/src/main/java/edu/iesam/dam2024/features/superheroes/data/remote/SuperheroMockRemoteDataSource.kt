@@ -7,14 +7,13 @@ import edu.iesam.dam2024.features.superheroes.domain.Images
 import edu.iesam.dam2024.features.superheroes.domain.Powerstats
 import edu.iesam.dam2024.features.superheroes.domain.Superhero
 import edu.iesam.dam2024.features.superheroes.domain.Work
-
+//Naming: Modelo + Tecnología + RemoteDataSource
 class SuperheroMockRemoteDataSource {
 
-        val s = superheroBuilder()
+        val s = OneHeroBuilder()
         fun getHeroes(): List<Superhero> = listOf(s)
-        //Superhero("1","title1","poster1"),
 
-        private fun superheroBuilder(): Superhero {
+        private fun OneHeroBuilder(): Superhero {
         val p1 = Powerstats(1,2,3,4,5,6)
         val a1 = Appearance("a","a", listOf("a","a"),listOf("a","a"),"a","a")
         val b1 = Biography("a","a",listOf("a","a"),"a","a","a","a")
