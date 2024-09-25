@@ -16,7 +16,7 @@ class MovieActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_movies)
         val movies = viewModel.viewCreated()
         bindData(movies)
         viewModel.itemSelected(movies.first().id) //Simular un click sobre un item
@@ -31,14 +31,32 @@ class MovieActivity : AppCompatActivity() {
                 }
         }
 
-        findViewById<TextView>(R.id.movie_id_1).text = movies[1].id
-        findViewById<TextView>(R.id.movie_id_1).text = movies[1].title
+        findViewById<TextView>(R.id.movie_id_2).text = movies[1].id
+        findViewById<TextView>(R.id.movie_id_2).text = movies[1].title
+        findViewById<LinearLayout>(R.id.layout_2).setOnClickListener {
+            val movie2: Movie? = viewModel.itemSelected(movies[1].id)
+            movie2?.let{
+                Log.d("@dev","Pelicula seleccionada: ${it.title}")
+            }
+        }
 
-        findViewById<TextView>(R.id.movie_id_1).text = movies[2].id
-        findViewById<TextView>(R.id.movie_id_1).text = movies[2].title
+        findViewById<TextView>(R.id.movie_id_3).text = movies[2].id
+        findViewById<TextView>(R.id.movie_id_3).text = movies[2].title
+        findViewById<LinearLayout>(R.id.layout_3).setOnClickListener {
+            val movie3: Movie? = viewModel.itemSelected(movies[2].id)
+            movie3?.let{
+                Log.d("@dev","Pelicula seleccionada: ${it.title}")
+            }
+        }
 
-        findViewById<TextView>(R.id.movie_id_1).text = movies[3].id
-        findViewById<TextView>(R.id.movie_id_1).text = movies[3].title
+        findViewById<TextView>(R.id.movie_id_4).text = movies[3].id
+        findViewById<TextView>(R.id.movie_id_4).text = movies[3].title
+        findViewById<LinearLayout>(R.id.layout_4).setOnClickListener {
+            val movie4: Movie? = viewModel.itemSelected(movies[3].id)
+            movie4?.let{
+                Log.d("@dev","Pelicula seleccionada: ${it.title}")
+            }
+        }
 
     }
 }
