@@ -7,6 +7,7 @@ import edu.iesam.dam2024.features.movies.domain.Movie
 
 class MovieXmlLocalDataSource(private val context: Context) {
     private val gson = Gson()
+
     private val sharedPreferences = context.getSharedPreferences(
         context.getString(R.string.name_file_xml),Context.MODE_PRIVATE
     )
@@ -19,17 +20,6 @@ class MovieXmlLocalDataSource(private val context: Context) {
             apply()
         }
     }
-    fun find() : Movie{
-        return Movie(
-            sharedPreferences.getString("id","")!!,
-            sharedPreferences.getString("title","")!!,
-            sharedPreferences.getString("poster","")!!
-        )
-    }
-
-    fun  delete(){
-        sharedPreferences.edit().clear().apply() // elimina el fichero xml
-    }
 
     fun saveAll(movies: List<Movie>) {
         val editor = sharedPreferences.edit()
@@ -37,6 +27,16 @@ class MovieXmlLocalDataSource(private val context: Context) {
             editor.putString(movie.id,gson.toJson(movie))
         }
         editor.apply()
+    }
+
+    fun find() : Movie{
+        sharedPreferences.apply {
+            return Movie(
+                getString("id", "")!!,
+                getString("title", "")!!,
+                getString("poster", "")!!
+            )
+        }
     }
 
     fun findAll() : List<Movie> {
@@ -48,4 +48,10 @@ class MovieXmlLocalDataSource(private val context: Context) {
         }
         return movies
     }
+
+    fun delete(){
+        sharedPreferences.edit().clear().apply()// elimina el fichero xml
+    }
+
+
 }
