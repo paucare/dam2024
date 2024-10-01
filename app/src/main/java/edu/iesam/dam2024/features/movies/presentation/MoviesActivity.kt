@@ -10,7 +10,7 @@ import edu.iesam.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.iesam.dam2024.features.movies.domain.Movie
 
 
-class MovieActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity() {
 
     //No es muy buena practica lateinit
     private lateinit var movieFactory : MovieFactory
@@ -37,7 +37,7 @@ class MovieActivity : AppCompatActivity() {
         movie?.let {
             xmlDataSource.save(it)
         }
-        val movieSaved = xmlDataSource.find()
+    val movieSaved = xmlDataSource.findById(movie!!.id)
         Log.d("@dev",movieSaved.toString())
         xmlDataSource.delete()
     }

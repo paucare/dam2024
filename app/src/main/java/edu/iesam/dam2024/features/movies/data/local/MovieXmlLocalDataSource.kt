@@ -13,12 +13,13 @@ class MovieXmlLocalDataSource(private val context: Context) {
     )
 
     fun save(movie: Movie) {
-        sharedPreferences.edit().apply(){
+       /* sharedPreferences.edit().apply(){
             putString("id",movie.id)
             putString("title",movie.title)
             putString("poster",movie.poster)
             apply()
-        }
+            }
+        */
     }
 
     fun saveAll(movies: List<Movie>) {
@@ -27,16 +28,6 @@ class MovieXmlLocalDataSource(private val context: Context) {
             editor.putString(movie.id,gson.toJson(movie))
         }
         editor.apply()
-    }
-
-    fun find() : Movie{
-        sharedPreferences.apply {
-            return Movie(
-                getString("id", "")!!,
-                getString("title", "")!!,
-                getString("poster", "")!!
-            )
-        }
     }
 
     fun findAll() : List<Movie> {
@@ -49,9 +40,16 @@ class MovieXmlLocalDataSource(private val context: Context) {
         return movies
     }
 
+    fun findById(movieId : String) : Movie? {
+        return sharedPreferences.getString(movieId,null)?.let{ movie ->
+            gson.fromJson(movie,Movie::class.java)
+        }
+    }
+
     fun delete(){
         sharedPreferences.edit().clear().apply()// elimina el fichero xml
     }
-
-
+    fun deleteById(){
+        sharedPreferences.edit().remove("id").apply()
+    }
 }
