@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/granate"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Superhero Image -->
+    <ImageView
+        android:id="@+id/superheroImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Superhero Name -->
+    <TextView
+        android:id="@+id/superheroName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/superheroImage"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Biography Section -->
+    <TextView
+        android:id="@+id/biography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="8dp"
+        android:text="Biography: " />
+
+    <!-- Connections Section -->
+    <TextView
+        android:id="@+id/connections"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="8dp"
+        android:text="Connections: " />
+
+</RelativeLayout>

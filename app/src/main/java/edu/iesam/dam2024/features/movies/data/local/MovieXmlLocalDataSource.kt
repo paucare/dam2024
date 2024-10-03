@@ -5,21 +5,18 @@ import com.google.gson.Gson
 import edu.iesam.dam2024.R
 import edu.iesam.dam2024.features.movies.domain.Movie
 
-class MovieXmlLocalDataSource(private val context: Context) {
+class MovieXmlLocalDataSource(
+    private val context: Context) {
     private val gson = Gson()
 
     private val sharedPreferences = context.getSharedPreferences(
         context.getString(R.string.name_file_xml),Context.MODE_PRIVATE
     )
 
-    fun save(movie: Movie) {
-       /* sharedPreferences.edit().apply(){
-            putString("id",movie.id)
-            putString("title",movie.title)
-            putString("poster",movie.poster)
-            apply()
-            }
-        */
+    fun save(item: Movie) {
+        val editor = sharedPreferences.edit()
+        editor.putString(item.id, gson.toJson(item))
+        editor.apply()
     }
 
     fun saveAll(movies: List<Movie>) {
