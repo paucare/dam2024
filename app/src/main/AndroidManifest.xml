@@ -19,7 +19,7 @@
             android:name=".features.movies.presentation.MovieDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".features.superheroes.presentation.SuperheroActivity"
+            android:name=".features.superheroes.presentation.SuperheroesActivity"
             android:exported="true">
 
             <!--
