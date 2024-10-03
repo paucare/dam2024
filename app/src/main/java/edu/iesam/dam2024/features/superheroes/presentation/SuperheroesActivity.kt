@@ -2,8 +2,12 @@ package edu.iesam.dam2024.features.superheroes.presentation
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import edu.iesam.dam2024.R
+import edu.iesam.dam2024.app.extensions.loadUrl
 import edu.iesam.dam2024.features.movies.presentation.MovieFactory
 import edu.iesam.dam2024.features.superheroes.domain.Superhero
 
@@ -20,9 +24,13 @@ class SuperheroesActivity : AppCompatActivity() {
 
         val heroes = viewModel.viewCreated()
         //Log.d("@dev","el superhero es: ${heroes.toString()}")
+        bindData(heroes)
     }
 
-    private fun bindData(heroes : List<Superhero>){
-        //findViewById<>()
+    private fun bindData(list : List<Superhero>){
+       val recyclerView = findViewById< RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = SuperheroAdapter(list)
+
     }
 }
