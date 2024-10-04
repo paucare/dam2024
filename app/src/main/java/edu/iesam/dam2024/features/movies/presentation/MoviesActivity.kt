@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import edu.iesam.dam2024.R
 import edu.iesam.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.iesam.dam2024.features.movies.domain.Movie
@@ -22,13 +23,23 @@ class MoviesActivity : AppCompatActivity() {
 
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildViewModel()
+        setupObserver()
+        viewModel.viewCreated()
 
-
+        /*
         val movies = viewModel.viewCreated()
         bindData(movies)
+         */
         //viewModel.itemSelected(movies.first().id) //Simular un click sobre un item
     }
-    private fun bindData(movies: List<Movie>){
+    private fun setupObserver(){
+        val movieObserver = Observer<MoviesViewModel.UiState>{ uiState ->
+            uiState.movies?.let {  bindData(it) }
+        }
+        viewModel.uiState.observe(this,movieObserver)
+    }
+
+         fun bindData(movies: List<Movie>){
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].title
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener {
