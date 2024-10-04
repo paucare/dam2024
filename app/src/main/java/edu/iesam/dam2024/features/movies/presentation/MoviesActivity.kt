@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import edu.iesam.dam2024.R
+import edu.iesam.dam2024.app.domain.ErrorApp
 import edu.iesam.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.iesam.dam2024.features.movies.domain.Movie
 
@@ -69,5 +70,13 @@ class MoviesActivity : AppCompatActivity() {
     private fun navigateToDetail(movieId : String) {
         //val intent = Intent(this,MovieDetailActivity::class.java)
         startActivity(MovieDetailActivity.getIntent(this,movieId))
+    }
+    private fun showError(error : ErrorApp){
+        when(error){
+            ErrorApp.InternetErrorApp -> TODO()
+            ErrorApp.ServerErrorApp-> TODO()
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.UnkownErrorApp -> TODO()
+        }
     }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import edu.iesam.dam2024.app.domain.ErrorApp
 import edu.iesam.dam2024.features.movies.domain.GetMovieUseCase
 import edu.iesam.dam2024.features.movies.domain.GetMoviesUseCase
 import edu.iesam.dam2024.features.movies.domain.Movie
@@ -25,7 +26,6 @@ class MoviesViewModel(
                 //postValue origen: Default, IO, Main destino: Main
                 //value origen/destino: el mismo. (Tiene que ir al mismo sitio del que viene)
                 _uiState.postValue(UiState(movies=movies))
-
             }
         }
     data class UiState(
