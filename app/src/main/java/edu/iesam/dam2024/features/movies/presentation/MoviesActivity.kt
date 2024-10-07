@@ -24,7 +24,9 @@ class MoviesActivity : AppCompatActivity() {
 
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildViewModel()
+
         setupObserver()
+
         viewModel.viewCreated()
 
         /*
@@ -33,11 +35,24 @@ class MoviesActivity : AppCompatActivity() {
          */
         //viewModel.itemSelected(movies.first().id) //Simular un click sobre un item
     }
-    private fun setupObserver(){
-        val movieObserver = Observer<MoviesViewModel.UiState>{ uiState ->
-            uiState.movies?.let {  bindData(it) }
+    private fun setupObserver() {
+
+        val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
+            uiState.movies?.let {
+                bindData(it)
+            }
+            uiState.errorApp?.let {
+                //pinto el error
+            }
+            if (uiState.isLoading) {
+                //muestro el cargando...
+                Log.d("@dev", "Cargando...")
+            } else {
+                //oculto el cargando...
+                Log.d("@dev"," Cargado ...")
+            }
         }
-        viewModel.uiState.observe(this,movieObserver)
+        viewModel.uiState.observe(this, movieObserver)
     }
 
          fun bindData(movies: List<Movie>){
