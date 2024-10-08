@@ -6,7 +6,9 @@ plugins {
 android {
     namespace = "edu.iesam.dam2024"
     compileSdk = 34
-
+    buildFeatures{
+        viewBinding = true
+    }
     defaultConfig {
         applicationId = "edu.iesam.dam2024"
         minSdk = 26
@@ -45,6 +47,9 @@ dependencies {
     implementation(libs.gson.serializer)
     implementation(libs.glide)
     implementation(libs.viewmodel.scope)
+    implementation(libs.nav.ui)
+    implementation(libs.nav.fragment)
+    api(libs.nav.fragment.ktx)
     //librerias para testing
     testImplementation(libs.junit)
     //librerias para android testing

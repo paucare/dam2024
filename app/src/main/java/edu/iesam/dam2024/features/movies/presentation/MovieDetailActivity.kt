@@ -14,8 +14,6 @@ import edu.iesam.dam2024.features.movies.domain.Movie
 
 class MovieDetailActivity : AppCompatActivity() {
 
-    private lateinit var movieFactory : MovieFactory
-    private lateinit var viewModel : MovieDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,33 +29,8 @@ class MovieDetailActivity : AppCompatActivity() {
 
     }
 
-    private fun setupObserver() {
-
-            val movieObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
-                uiState.movie?.let {
-                    bindData(it)
-                }
-                uiState.errorApp?.let {
-                    //pinto el error
-                }
-                if (uiState.isLoading) {
-                    //muestro el cargando...
-                    Log.d("@dev", "Cargando...")
-                } else {
-                    //oculto el cargando...
-                    Log.d("@dev"," Cargado ...")
-                }
-            }
-            viewModel.uiState.observe(this, movieObserver)
-    }
-
     private fun getMovieId() : String? {
         return intent.getStringExtra(KEY_MOVIE_ID)
-    }
-    private fun bindData(movie: Movie){
-        val imageView = findViewById<ImageView>(R.id.poster_detail)
-        imageView.loadUrl(movie.poster)
-        findViewById<TextView>(R.id.title_detail).text = movie.title
     }
 
     companion object {

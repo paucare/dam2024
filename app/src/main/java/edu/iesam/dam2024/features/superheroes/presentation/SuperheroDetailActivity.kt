@@ -31,6 +31,7 @@ class SuperheroDetailActivity : AppCompatActivity() {
         getSuperheroId()?.let{ heroId->
             viewModel.viewCreated(heroId)
         }
+
     }
 
     private fun getSuperheroId(): String? {
@@ -73,6 +74,7 @@ class SuperheroDetailActivity : AppCompatActivity() {
             return intent
         }
     }
+
 
 
 }
