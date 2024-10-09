@@ -1,5 +1,7 @@
 package edu.iesam.dam2024.features.movies.presentation
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,13 +40,14 @@ class MovieDetailFragment: Fragment() {
         setupObserver()
         movieFactory = MovieFactory(requireContext())
         viewModel = movieFactory.buildMovieDetailViewModel()
-        viewModel.viewCreated()
+        setupObserver()
+        viewModel.viewCreated(getMovieId()!!)
     }
 
     private fun setupObserver() {
 
-        val movieDetailObserver = Observer<MoviesViewModel.UiState> { uiState ->
-            uiState.movies?.let {
+        val movieDetailObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
+            uiState.movie?.let {
                 bindData(it)
             }
             uiState.errorApp?.let {
@@ -68,10 +71,7 @@ class MovieDetailFragment: Fragment() {
         imageView.loadUrl(movie.poster)
         binding.titleDetail.text = movie.title
     }
-    private fun navigateToDetail(movieId : String) {
-        //val intent = Intent(this,MovieDetailActivity::class.java)
-        startActivity(MovieDetailActivity.getIntent(requireContext(),movieId))
-    }
+
 
     private fun showError(error : ErrorApp){
         when(error){
@@ -79,6 +79,20 @@ class MovieDetailFragment: Fragment() {
             ErrorApp.ServerErrorApp-> TODO()
             ErrorApp.DataErrorApp -> TODO()
             ErrorApp.UnkownErrorApp -> TODO()
+        }
+    }
+
+    private fun getMovieId() : String? {
+        return requireActivity().intent.getStringExtra(KEY_MOVIE_ID)
+    }
+
+    companion object {
+        val KEY_MOVIE_ID = "key_movie_id"
+
+        fun getIntent(context: Context, movieId : String): Intent {
+            val intent = Intent(context,MovieDetailActivity::class.java)
+            intent.putExtra(KEY_MOVIE_ID,movieId)
+            return intent
         }
     }
 

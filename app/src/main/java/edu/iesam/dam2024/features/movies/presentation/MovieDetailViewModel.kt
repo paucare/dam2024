@@ -1,6 +1,5 @@
 package edu.iesam.dam2024.features.movies.presentation
 
-import android.provider.Contacts.Intents.UI
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import edu.iesam.dam2024.app.domain.ErrorApp
 import edu.iesam.dam2024.features.movies.domain.GetMovieUseCase
 import edu.iesam.dam2024.features.movies.domain.Movie
-import edu.iesam.dam2024.features.movies.presentation.MoviesViewModel.UiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

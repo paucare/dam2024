@@ -19,27 +19,5 @@ class MovieDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
 
-        movieFactory = MovieFactory(this)
-        viewModel = movieFactory.buildMovieDetailViewModel()
-        setupObserver()
-
-        getMovieId()?.let { movieId ->
-            viewModel.viewCreated(movieId)
-        }
-
-    }
-
-    private fun getMovieId() : String? {
-        return intent.getStringExtra(KEY_MOVIE_ID)
-    }
-
-    companion object {
-        val KEY_MOVIE_ID = "key_movie_id"
-
-        fun getIntent(context: Context,movieId : String): Intent {
-                    val intent = Intent(context,MovieDetailActivity::class.java)
-                    intent.putExtra(KEY_MOVIE_ID,movieId)
-                    return intent
-        }
     }
 }

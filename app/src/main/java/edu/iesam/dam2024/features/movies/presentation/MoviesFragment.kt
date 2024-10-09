@@ -5,12 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import edu.iesam.dam2024.R
 import edu.iesam.dam2024.app.domain.ErrorApp
 import edu.iesam.dam2024.databinding.FragmentMoviesBinding
 import edu.iesam.dam2024.features.movies.domain.Movie
@@ -67,7 +64,7 @@ class MoviesFragment : Fragment() {
         binding.movieId1.text = movies[0].id
         binding.movieTitle1.text = movies[0].title
         binding.layout1.setOnClickListener{
-            findNavController().navigate()
+            findNavController()
         }
 
         binding.movieId1.text = movies[1].id
@@ -93,8 +90,9 @@ class MoviesFragment : Fragment() {
     }
     private fun navigateToDetail(movieId : String) {
         //val intent = Intent(this,MovieDetailActivity::class.java)
-        startActivity(MovieDetailActivity.getIntent(requireContext(),movieId))
+        startActivity(MovieDetailFragment.getIntent(requireContext(),movieId))
     }
+
 
     private fun showError(error : ErrorApp){
         when(error){

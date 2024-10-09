@@ -25,7 +25,7 @@ class SuperheroesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_superhero)
 
         factory = SuperheroFactory(this)
-        viewModel = factory.buildHeroesViewModel()
+        //viewModel = factory.buildHeroesViewModel()
         setupObserver()
 
         viewModel.viewCreated()
