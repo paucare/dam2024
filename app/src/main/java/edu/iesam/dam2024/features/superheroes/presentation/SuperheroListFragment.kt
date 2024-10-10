@@ -1,13 +1,17 @@
 package edu.iesam.dam2024.features.superheroes.presentation
 
 import android.os.Bundle
+import android.text.Layout.Directions
 import androidx.lifecycle.ViewModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import edu.iesam.dam2024.databinding.FragmentSuperheroListBinding
+import edu.iesam.dam2024.features.superheroes.domain.Superhero
 
 class SuperheroListFragment: Fragment() {
 
@@ -22,24 +26,50 @@ class SuperheroListFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSuperheroListBinding.inflate(inflater,container,false)
+        _binding = FragmentSuperheroListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         factory = SuperheroFactory(requireContext())
-        //viewModel= factory.getSuperheroListViewModel()
+        viewModel= factory.getSuperheroListViewModel()
         setupObserver()
         viewModel.loadSuperHeroes()
 
     }
-    private fun setupObserver(){
-        val observer = Observer<SuperheroListViewModel.UiState>{
-            //codigo de respuesta
+
+    private fun setupObserver() {
+        val observer = Observer<SuperheroListViewModel.UiState> { uiState ->
+            uiState.superheroes?.let { superheroes ->
+                bindData(superheroes)
+            }
         }
-         viewModel.uiState.observe(viewLifecycleOwner,observer)
+        viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
+    private fun bindData(superheroes: List<Superhero>) {
+        binding.apply {
+            superhero1.apply {
+                text = superheroes[0].name
+                setOnClickListener {
+                    navigateToDetails(superheroes[0].id)
 
+                }
+            }
+            superhero2.apply {
+                text = superheroes[1].name
+                setOnClickListener {
+                    navigateToDetails(superheroes[1].id)
+
+                }
+            }
+        }
+    }
+
+    private fun navigateToDetails(superheroId: String){
+        findNavController().navigate(SuperheroListFragmentDirections
+            .actionSuperheroToSuperheroDetail(superheroId))
+
+    }
 }

@@ -12,11 +12,8 @@ class SuperheroFactory (private val context : Context) {
     private val mockRemote = SuperheroMockRemoteDataSource()
     private val dataRepository = SuperheroDataRepository(local,mockRemote)
     private val getHeroesUseCase = GetSuperheroesUseCase(dataRepository)
-    private val getHeroUseCase = GetSuperheroUseCase(dataRepository)
-/*
-
 
     fun getSuperheroListViewModel(): SuperheroListViewModel{
-        //return SuperheroListViewModel()
+        return SuperheroListViewModel(getHeroesUseCase)
     }
-   */}
+  }
