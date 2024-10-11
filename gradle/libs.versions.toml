@@ -14,6 +14,7 @@ glide="4.16.0"
 viewModelScope="2.8.6"
 navigationComponent="2.8.2"
 
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

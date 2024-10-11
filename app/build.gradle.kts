@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.viewmodel.scope)
     implementation(libs.nav.ui.ktx)
     implementation(libs.nav.fragment.ktx)
+
     //librerias para testing
     testImplementation(libs.junit)
     //librerias para android testing

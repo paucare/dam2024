@@ -7,7 +7,7 @@
     android:background="@color/granate"
     android:orientation="vertical"
     tools:context=".features.superheroes.presentation.SuperheroActivity">
-
+  
   <Toolbar
       android:id="@+id/toolbar"
       android:title="Marvel's Database"
