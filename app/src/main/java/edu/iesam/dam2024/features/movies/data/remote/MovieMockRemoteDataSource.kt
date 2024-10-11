@@ -8,7 +8,7 @@ Naming: Modelo + Tecnología + RemoteDataSource
 class MovieMockRemoteDataSource {
 
     fun getMovies(): List<Movie> = listOf(
-        Movie("1","Parasyte","poster1"),
+        Movie("1","Parasyte","https://pics.filmaffinity.com/gisaengchung-432616131-large.jpg"),
         Movie("2","L'Haine","poster2"),
         Movie("3","Mad Max","poster3"),
         Movie(title="Paddington",poster="poster4",id="4")
