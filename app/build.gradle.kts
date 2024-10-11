@@ -1,12 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.navigation.safeargs.kotlin)
 }
 
 android {
     namespace = "edu.iesam.dam2024"
     compileSdk = 34
-
+    buildFeatures{
+        viewBinding = true
+    }
     defaultConfig {
         applicationId = "edu.iesam.dam2024"
         minSdk = 26
@@ -45,6 +48,9 @@ dependencies {
     implementation(libs.gson.serializer)
     implementation(libs.glide)
     implementation(libs.viewmodel.scope)
+    implementation(libs.nav.ui.ktx)
+    implementation(libs.nav.fragment.ktx)
+
     //librerias para testing
     testImplementation(libs.junit)
     //librerias para android testing
