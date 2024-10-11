@@ -79,7 +79,6 @@ class MoviesActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.layout_4).setOnClickListener {
             navigateToDetail(movies[3].id)
         }
-
     }
 
     private fun navigateToDetail(movieId : String) {
