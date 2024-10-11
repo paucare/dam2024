@@ -5,7 +5,9 @@ import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import edu.iesam.dam2024.R
+import edu.iesam.dam2024.app.domain.ErrorApp
 import edu.iesam.dam2024.features.movies.data.local.MovieXmlLocalDataSource
 import edu.iesam.dam2024.features.movies.domain.Movie
 
@@ -23,18 +25,42 @@ class MoviesActivity : AppCompatActivity() {
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildViewModel()
 
+        setupObserver()
 
+        viewModel.viewCreated()
+
+        /*
         val movies = viewModel.viewCreated()
         bindData(movies)
+         */
         //viewModel.itemSelected(movies.first().id) //Simular un click sobre un item
     }
+    private fun setupObserver() {
 
-    private fun bindData(movies: List<Movie>){
+        val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
+            uiState.movies?.let {
+                bindData(it)
+            }
+            uiState.errorApp?.let {
+                //pinto el error
+            }
+            if (uiState.isLoading) {
+                //muestro el cargando...
+                Log.d("@dev", "Cargando...")
+            } else {
+                //oculto el cargando...
+                Log.d("@dev"," Cargado ...")
+            }
+        }
+        viewModel.uiState.observe(this, movieObserver)
+    }
+
+         fun bindData(movies: List<Movie>){
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].title
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener {
               navigateToDetail(movies[0].id)
-            }
+        }
 
         findViewById<TextView>(R.id.movie_id_2).text = movies[1].id
         findViewById<TextView>(R.id.movie_id_2).text = movies[1].title
@@ -55,9 +81,16 @@ class MoviesActivity : AppCompatActivity() {
         }
     }
 
-        private fun navigateToDetail(movieId : String) {
+    private fun navigateToDetail(movieId : String) {
         //val intent = Intent(this,MovieDetailActivity::class.java)
         startActivity(MovieDetailActivity.getIntent(this,movieId))
-            }
+    }
+    private fun showError(error : ErrorApp){
+        when(error){
+            ErrorApp.InternetErrorApp -> TODO()
+            ErrorApp.ServerErrorApp-> TODO()
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.UnkownErrorApp -> TODO()
         }
-
+    }
+}

@@ -5,7 +5,8 @@ import com.google.gson.Gson
 import edu.iesam.dam2024.R
 import edu.iesam.dam2024.features.movies.domain.Movie
 
-class MovieXmlLocalDataSource(private val context: Context) {
+class MovieXmlLocalDataSource(
+    private val context: Context) {
     private val gson = Gson()
 
     private val sharedPreferences = context.getSharedPreferences(
