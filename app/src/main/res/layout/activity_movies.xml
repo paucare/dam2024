@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".features.movies.presentation.MoviesActivity">
+    tools:context=".features.movies.presentation.MovieActivity">
     <!--Fila 1-->
     <LinearLayout
         android:id ="@+id/layout_1"

@@ -8,9 +8,7 @@ import edu.iesam.dam2024.features.movies.domain.MovieRepository
 class MovieDataRepository(
     private val mockRemoteDataSource: MovieMockRemoteDataSource,
     private val local: MovieXmlLocalDataSource
-) :
-    MovieRepository {
-
+) {
     override fun getMovies(): List<Movie> {
         val moviesFromLocal = local.findAll()
         if(moviesFromLocal.isEmpty()) {
