@@ -10,7 +10,6 @@
     android:background="@color/dark_blue">
 
     <ImageView
-        android:id ="@+id/poster_detail"
         android:layout_width="200dp"
         android:layout_height="200dp"
         >
