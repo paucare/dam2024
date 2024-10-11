@@ -16,7 +16,6 @@ class MoviesActivity : AppCompatActivity() {
     private lateinit var movieFactory : MovieFactory
     private lateinit var viewModel : MoviesViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies)
@@ -27,31 +26,19 @@ class MoviesActivity : AppCompatActivity() {
 
         val movies = viewModel.viewCreated()
         bindData(movies)
-
         //viewModel.itemSelected(movies.first().id) //Simular un click sobre un item
     }
 
-    private fun testXml() {
-        val xmlDataSource = MovieXmlLocalDataSource(this)
-        val movie = viewModel.itemSelected("1")
-        movie?.let {
-            xmlDataSource.save(it)
-        }
-    val movieSaved = xmlDataSource.findById(movie!!.id)
-        Log.d("@dev",movieSaved.toString())
-        xmlDataSource.delete()
-    }
     private fun bindData(movies: List<Movie>){
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].title
         findViewById<LinearLayout>(R.id.layout_1).setOnClickListener {
               navigateToDetail(movies[0].id)
+            }
 
-        }
         findViewById<TextView>(R.id.movie_id_2).text = movies[1].id
         findViewById<TextView>(R.id.movie_id_2).text = movies[1].title
         findViewById<LinearLayout>(R.id.layout_2).setOnClickListener {
-
             navigateToDetail(movies[1].id)
         }
 
@@ -59,7 +46,6 @@ class MoviesActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.movie_id_3).text = movies[2].title
         findViewById<LinearLayout>(R.id.layout_3).setOnClickListener {
             navigateToDetail(movies[2].id)
-
         }
 
         findViewById<TextView>(R.id.movie_id_4).text = movies[3].id
@@ -67,11 +53,11 @@ class MoviesActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.layout_4).setOnClickListener {
             navigateToDetail(movies[3].id)
         }
-
     }
 
-    private fun navigateToDetail(movieId : String) {
+        private fun navigateToDetail(movieId : String) {
         //val intent = Intent(this,MovieDetailActivity::class.java)
         startActivity(MovieDetailActivity.getIntent(this,movieId))
-    }
-}
+            }
+        }
+

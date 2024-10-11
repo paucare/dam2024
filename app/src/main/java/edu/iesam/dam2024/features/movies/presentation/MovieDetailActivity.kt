@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import edu.iesam.dam2024.R
@@ -28,14 +29,14 @@ class MovieDetailActivity : AppCompatActivity() {
             }
         }
 
-
     }
     private fun getMovieId() : String? {
         return intent.getStringExtra(KEY_MOVIE_ID)
     }
     private fun bindData(movie: Movie){
-        val imageView = findViewById<ImageView>(R.id.poster)
+        val imageView = findViewById<ImageView>(R.id.poster_detail)
         imageView.loadUrl(movie.poster)
+        findViewById<TextView>(R.id.title_detail).text = movie.title
     }
 
     companion object {
