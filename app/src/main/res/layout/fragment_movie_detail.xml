@@ -5,9 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.movies.presentation.MovieDetailActivity"
     android:orientation="vertical"
-    android:background="@color/dark_blue">
+    android:background="@color/letterboxd_backg">
+
+    <TextView
+        android:id="@+id/title_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"/>
 
     <ImageView
         android:id ="@+id/poster_detail"
@@ -15,11 +21,4 @@
         android:layout_height="200dp"
         >
     </ImageView>
-
-    <TextView
-        android:id="@+id/title_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/white"/>
 </LinearLayout>

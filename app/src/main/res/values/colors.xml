@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_blue">#001a57</color>
     <color name="granate">#AB2A3E</color>
+    <color name="letterboxd_backg">#2C343F</color>
+    <color name="letterboxd_header">#14171C</color>
 </resources>
