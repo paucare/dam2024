@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import edu.iesam.dam2024.app.extensions.loadUrl
 import edu.iesam.dam2024.databinding.FragmentSuperheroDetailBinding
-import edu.iesam.dam2024.features.movies.presentation.MovieDetailViewModel
 import edu.iesam.dam2024.features.superheroes.domain.Superhero
 
 

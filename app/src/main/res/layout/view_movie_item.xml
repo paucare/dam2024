@@ -3,31 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp">
-
+    android:padding="10dp"
+    >
     <ImageView
-        android:id="@+id/superheroImage"
+        android:id="@+id/movieImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
     <TextView
-        android:id="@+id/superheroName"
+        android:id="@+id/movieName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintStart_toEndOf="@id/movieImage"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/montserrat_regular"
+        />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/superheroImage"
+        app:layout_constraintTop_toTopOf="@+id/movieImage"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

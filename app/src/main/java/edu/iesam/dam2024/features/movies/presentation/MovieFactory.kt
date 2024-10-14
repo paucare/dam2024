@@ -7,18 +7,21 @@ import edu.iesam.dam2024.features.movies.data.remote.MovieMockRemoteDataSource
 import edu.iesam.dam2024.features.movies.domain.GetMovieUseCase
 import edu.iesam.dam2024.features.movies.domain.GetMoviesUseCase
 
-class MovieFactory (private val context: Context){
+class MovieFactory(
+    private val context : Context
+) {
+    val local = MovieXmlLocalDataSource(context)
+    val mockRemote = MovieMockRemoteDataSource()
+    val dataRepository = MovieDataRepository(mockRemote,local)
+    val getMoviesUseCase = GetMoviesUseCase(dataRepository)
 
-    private val movieMockRemote = MovieMockRemoteDataSource()
-    private val movieLocal = MovieXmlLocalDataSource(context)
-    private val dataRepository = MovieDataRepository(movieMockRemote,movieLocal)
-    private val getMoviesUseCase = GetMoviesUseCase(dataRepository)
-    private val getMovieUseCase = GetMovieUseCase(dataRepository)
+    fun getMovieListViewModel(): MovieListViewModel{
+        return MovieListViewModel(getMoviesUseCase)
+    }
+    fun getMovieDetailViewModel(): MovieDetailViewModel{
+        return MovieDetailViewModel(GetMovieUseCase(dataRepository))
+    }
 
-    fun buildViewModel(): MoviesViewModel {
-        return MoviesViewModel(getMoviesUseCase)
-    }
-    fun buildMovieDetailViewModel(): MovieDetailViewModel {
-        return MovieDetailViewModel(getMovieUseCase)
-    }
+
+
 }

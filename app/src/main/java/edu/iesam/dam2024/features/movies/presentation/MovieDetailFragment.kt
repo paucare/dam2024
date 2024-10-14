@@ -1,28 +1,28 @@
 package edu.iesam.dam2024.features.movies.presentation
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import edu.iesam.dam2024.R
-import edu.iesam.dam2024.app.domain.ErrorApp
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import edu.iesam.dam2024.app.extensions.loadUrl
 import edu.iesam.dam2024.databinding.FragmentMovieDetailBinding
+import edu.iesam.dam2024.databinding.FragmentSuperheroDetailBinding
 import edu.iesam.dam2024.features.movies.domain.Movie
+import edu.iesam.dam2024.features.superheroes.presentation.SuperheroDetailViewModel
+import edu.iesam.dam2024.features.superheroes.presentation.SuperheroFactory
 
-class MovieDetailFragment: Fragment() {
 
-    private lateinit var movieFactory : MovieFactory
-    private lateinit var viewModel : MovieDetailViewModel
+class MovieDetailFragment : Fragment() {
 
-    //Esto hay que buscarlo en la documentacion
+    private val movieArgs : MovieDetailFragmentArgs by navArgs()
+
+    private lateinit var factory: MovieFactory
+    private lateinit var viewModel: MovieDetailViewModel
 
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
@@ -35,13 +35,16 @@ class MovieDetailFragment: Fragment() {
         _binding = FragmentMovieDetailBinding.inflate(inflater,container,false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        factory = MovieFactory(requireContext())
+        viewModel = factory.getMovieDetailViewModel()
+
         setupObserver()
-        movieFactory = MovieFactory(requireContext())
-        viewModel = movieFactory.buildMovieDetailViewModel()
-        setupObserver()
-        viewModel.viewCreated(getMovieId()!!)
+
+        viewModel.viewCreated(movieArgs.movieId)
     }
 
     private fun setupObserver() {
@@ -61,42 +64,17 @@ class MovieDetailFragment: Fragment() {
                 Log.d("@dev"," Cargado ...")
             }
         }
-        viewModel.uiState.observe(viewLifecycleOwner, movieDetailObserver)
+        viewModel.uiState.observe(viewLifecycleOwner, movieDetailObserver )
     }
-
-
-
-    private fun bindData(movie: Movie){
-        val imageView = binding.posterDetail
-        imageView.loadUrl(movie.poster)
-        binding.titleDetail.text = movie.title
-    }
-
-
-    private fun showError(error : ErrorApp){
-        when(error){
-            ErrorApp.InternetErrorApp -> TODO()
-            ErrorApp.ServerErrorApp-> TODO()
-            ErrorApp.DataErrorApp -> TODO()
-            ErrorApp.UnkownErrorApp -> TODO()
+    private fun bindData(movie : Movie){
+        binding.apply {
+            titleDetail.text=movie.title
+            posterDetail.loadUrl(movie.poster)
         }
     }
-
-    private fun getMovieId() : String? {
-        return requireActivity().intent.getStringExtra(KEY_MOVIE_ID)
-    }
-
-    companion object {
-        val KEY_MOVIE_ID = "key_movie_id"
-
-        fun getIntent(context: Context, movieId : String): Intent {
-            val intent = Intent(context,MovieDetailActivity::class.java)
-            intent.putExtra(KEY_MOVIE_ID,movieId)
-            return intent
-        }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }}
+    }
+
+}
