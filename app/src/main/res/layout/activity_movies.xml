@@ -17,22 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/letterboxd_header"
+
         >
-
-        <SearchView
-            android:id="@+id/search_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:iconifiedByDefault="true"
-            android:queryHint="Search"
-            android:minWidth="0dp"
-            android:maxWidth="200dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            app:queryBackground="@android:color/transparent"
-            app:searchIcon="@android:drawable/ic_menu_search"
-            />
-
 
     </Toolbar>
 
@@ -46,10 +32,56 @@
         app:navGraph="@navigation/nav_graph_movies"
         />
 
-    <View
+    <LinearLayout
         android:id="@+id/menuRectangle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/letterboxd_header"/>
+        android:background="@color/letterboxd_header"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+
+
+        <ImageView
+            android:id="@+id/icon_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/homeicon"
+            android:contentDescription="Home Icon"/>
+
+        <ImageView
+            android:id="@+id/icon_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/homeicon"
+            android:contentDescription="Home Icon"/>
+
+        <ImageView
+            android:id="@+id/icon_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/addicon"
+            android:contentDescription="Add Icon"/>
+
+        <ImageView
+            android:id="@+id/icon_activity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/activityicon"
+            android:contentDescription="Home Icon"/>
+
+        <ImageView
+            android:id="@+id/icon_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/profileicon"
+            android:contentDescription="Home Icon"/>
+
+    </LinearLayout>
 
 </LinearLayout>
