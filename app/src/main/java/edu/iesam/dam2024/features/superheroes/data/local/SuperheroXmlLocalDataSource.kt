@@ -20,9 +20,9 @@ class SuperheroXmlLocalDataSource(
         editor.putString(item.id,gson.toJson(item))
         editor.apply()
     }
-    fun saveAll(heroes : List<Superhero>){
+    fun saveAll(heroes : List<Superhero>?){
         val editor = sharedPref.edit()
-        heroes.forEach { hero ->
+        heroes?.forEach { hero ->
             editor.putString(hero.id,gson.toJson(hero))
         }
         editor.apply()
@@ -32,7 +32,7 @@ class SuperheroXmlLocalDataSource(
             gson.fromJson(hero,Superhero::class.java)
         }
     }
-    fun findAll(): List<Superhero>{
+    fun findAll(): List<Superhero>?{
         val heroes = ArrayList<Superhero>()
         val mapHeroes = sharedPref.all // as MapString<String>
         mapHeroes.values.forEach{ jsonHero ->
