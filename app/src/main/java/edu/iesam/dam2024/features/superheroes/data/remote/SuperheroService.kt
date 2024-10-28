@@ -10,8 +10,8 @@ interface SuperheroService {
     // REST API: POST, GET, DELETE, PUT, PATCH
 
     @GET("all.json")
-    suspend fun requestSuperheroes(): Response<List<Superhero>>
+    suspend fun requestSuperheroes(): Response<List<SuperheroApiModel>>
 
     @GET("id/{heroId}.json")
-    suspend fun requestSingleHero(@Path("heroId") heroId : String): Response<Superhero>
+    suspend fun requestSingleHero(@Path("heroId") heroId : String): Response<SuperheroApiModel>
 }

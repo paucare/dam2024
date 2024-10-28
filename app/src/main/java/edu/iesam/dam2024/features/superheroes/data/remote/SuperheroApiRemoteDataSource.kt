@@ -8,11 +8,11 @@ class SuperheroApiRemoteDataSource(
 
     suspend fun getSuperheroes(): List<Superhero>? {
 
-    return superheroService.requestSuperheroes().body()
+        return superheroService.requestSuperheroes().body()?.map {
+            it.toModel()
+        }
 
     }
-
-
 
 
 }
